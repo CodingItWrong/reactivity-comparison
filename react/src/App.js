@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import {useState} from 'react';
 import './App.css';
 
 function App() {
+  const [newWidgetName, setNewWidgetName] = useState('');
+  const [widgets, setWidgets] = useState([]);
+
+  const handleAddWidget = e => {
+    e.preventDefault();
+    setWidgets([...widgets, newWidgetName]);
+    setNewWidgetName('');
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Widgets</h1>
+      <form onSubmit={handleAddWidget}>
+        <input type="text" placeholder="Widget" value={newWidgetName} onChange={e => setNewWidgetName(e.target.value)} />
+        <button type="submit">Add</button>
+      </form>
+      <ul>
+        {widgets.map(widget => (<li>{widget}</li>))}
+      </ul>
     </div>
   );
 }
