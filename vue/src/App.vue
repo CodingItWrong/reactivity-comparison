@@ -1,26 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>Widgets</h1>
+    <form @submit.prevent="handleAddWidget">
+      <input type="text" placeholder="Widget" v-model="newWidgetName" />
+      <button type="submit">Add</button>
+    </form>
+    <ul>
+      <li v-for="widget in widgets" :key="widget">{{ widget }}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  data() {
+    return {
+      widgets: [],
+      newWidgetName: [],
+    };
+  },
+  methods: {
+    handleAddWidget() {
+      this.widgets.push(this.newWidgetName);
+      this.newWidgetName = "";
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
