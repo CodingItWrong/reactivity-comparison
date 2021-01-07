@@ -7,6 +7,8 @@ function App() {
 
   const handleAddWidget = e => {
     e.preventDefault();
+
+    // React docs don't actually even give an example of an array `useState` value???
     setWidgets([...widgets, newWidgetName]);
     setNewWidgetName('');
   }

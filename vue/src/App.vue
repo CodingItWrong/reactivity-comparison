@@ -22,6 +22,8 @@ export default {
   },
   methods: {
     handleAddWidget() {
+      // https://vuejs.org/v2/guide/list.html#Mutation-Methods
+      // Vue wraps an observed array’s mutation methods so they will also trigger view updates.
       this.widgets.push(this.newWidgetName);
       this.newWidgetName = "";
     },
