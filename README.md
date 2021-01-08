@@ -1,6 +1,14 @@
 # Reactivity Comparison
 
-## React
+This compares my experience as a user of the reactivity models in Ember Octane, MobX, React, and Vue. In summary:
+
+- React has a very simple rule: "don't mutate." This can lead to complex code, but at least it isn't edgecasey.
+- MobX and Vue have similar edge cases: "mutation APIs work, except when they don't." You can use normal APIs most of the time, but have to keep in mind when they will fail.
+- Ember Octane's @tracked properties in classes are less edgecasey than MobX and Vue, but there are decision points to be made around using JS primitives vs class instances with @tracked properties.
+
+As a result, although I don't prefer React's approach for many reasons, there is a straightforwardness to it that makes it easy to work with.
+
+## [React](./react)
 
 With React, the rule is "don't mutate." It's consistent: you always follow it, and you're safe.
 
