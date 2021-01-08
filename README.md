@@ -51,7 +51,7 @@ toggleComplete(todo) {
 
 Like with Vue, the rule with MobX is "mutation APIs work, except when they don't." There are caveats.
 
-Always use mutation, but be aware of caveats. To add a record you call .push(), which the observed array wraps. To update a record you assign to its property.
+To add a record you call .push(), which the observed array wraps. To update a record you assign to its property.
 
 I know of at least one caveat: in React Native, using FlatList, the array is not accessed in the render function, so MobX doesn't know to track it. You have to explicitly call .slice() there. And I have seen this fail even doing this approach. <https://github.com/mobxjs/mobx/issues/1142>
 
