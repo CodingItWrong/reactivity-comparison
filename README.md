@@ -35,7 +35,7 @@ const toggleComplete = index => {
 }
 ```
 
-## Vue
+## [Vue](./vue)
 
 With Vue, the rule is "mutation APIs work, except when they don't." There are caveats.
 
@@ -55,7 +55,7 @@ toggleComplete(todo) {
 },
 ```
 
-## MobX
+## [MobX (in React)](./mobx)
 
 Like with Vue, the rule with MobX is "mutation APIs work, except when they don't." There are caveats.
 
@@ -91,7 +91,7 @@ const toggleComplete = todo => {
 </ul>
 ```
 
-## Ember Octane
+## [Ember Octane](./ember)
 
 With Ember Octane the rule is "assign to tracked properties, but use immutability for objects and arrays that aren't tracked."
 
