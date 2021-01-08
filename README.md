@@ -87,7 +87,36 @@ const toggleComplete = todo => {
 
 With Ember Octane the rule is "assign to tracked properties, but use immutability for objects and arrays that aren't tracked."
 
-Ember Data throws another curveball because it's on the old reactivity model, you *can* mutate its properties, but you need the @computed decorator. That consideration can lie outside the scope of this convo.
+If you're storing data in components you're at least going to have tracked properties at that point. So you have a choice: store all your data in class instances with tracked properties, or use JS primitives with immutability.
+
+The class instance approach:
+
+```js
+class Todo {
+  @tracked name;
+  @tracked complete = false;
+
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+@action
+handleAddTodo() {
+  const todo = new Todo(this.newTodoName);
+.
+  // .push() doesn't work, would need an EmberArray or something
+  this.todos = [...this.todos, todo];
+}
+
+@action
+toggleComplete(index) {
+  const todo = this.todos[index];
+  todo.complete = !todo.complete;
+}
+```
+
+The primitives/immutability approach:
 
 ```js
 @action
@@ -114,3 +143,5 @@ toggleComplete(index) {
   ];
 }
 ```
+
+(Ember Data throws another curveball because it's on the old reactivity model, you *can* mutate its properties, but you need the @computed decorator. That consideration can lie outside the scope of this convo.)
