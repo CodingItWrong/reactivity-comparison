@@ -1,12 +1,19 @@
 <template>
   <div>
-    <h1>Widgets</h1>
-    <form @submit.prevent="handleAddWidget">
-      <input type="text" placeholder="Widget" v-model="newWidgetName" />
+    <h1>Todos</h1>
+    <form @submit.prevent="handleAddTodo">
+      <input type="text" placeholder="Todo" v-model="newTodoName" />
       <button type="submit">Add</button>
     </form>
     <ul>
-      <li v-for="widget in widgets" :key="widget">{{ widget }}</li>
+      <li v-for="todo in todos" :key="todo">
+        {{ todo.name }}
+        -
+        <span v-if="todo.complete"> Complete </span>
+        <span v-else> Incomplete </span>
+        -
+        <button @click="toggleComplete(todo)">Toggle</button>
+      </li>
     </ul>
   </div>
 </template>
@@ -16,16 +23,21 @@ export default {
   name: "App",
   data() {
     return {
-      widgets: [],
-      newWidgetName: [],
+      todos: [],
+      newTodoName: [],
     };
   },
   methods: {
-    handleAddWidget() {
+    handleAddTodo() {
+      const todo = { name: this.newTodoName, complete: false };
+
       // https://vuejs.org/v2/guide/list.html#Mutation-Methods
       // Vue wraps an observed array’s mutation methods so they will also trigger view updates.
-      this.widgets.push(this.newWidgetName);
-      this.newWidgetName = "";
+      this.todos.push(todo);
+      this.newTodoName = "";
+    },
+    toggleComplete(todo) {
+      todo.complete = !todo.complete;
     },
   },
 };
