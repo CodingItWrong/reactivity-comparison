@@ -1,0 +1,12 @@
+<div>
+  <h1>Todos</h1>
+  <form {{on 'submit' this.handleAddTodo}}>
+    <Input @value={{this.newTodoName}} type="text" placeholder="Todo" />
+    <button type="submit">Add</button>
+  </form>
+  <ul>
+    {{#each this.todos as |todo|}}
+    <li>{{todo}}</li>
+    {{/each}}
+  </ul>
+</div>
