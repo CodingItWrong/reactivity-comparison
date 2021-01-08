@@ -56,6 +56,8 @@ Always use mutation, but be aware of caveats. To add a record you call .push(), 
 I know of at least one caveat: in React Native, using FlatList, the array is not accessed in the render function, so MobX doesn't know to track it. You have to explicitly call .slice() there. And I have seen this fail even doing this approach. <https://github.com/mobxjs/mobx/issues/1142>
 
 ```jsx
+// this code example doesn't happen to run into the caveats
+
 class TodoStore {
   todos = [];
 
