@@ -104,7 +104,7 @@ class Todo {
 @action
 handleAddTodo() {
   const todo = new Todo(this.newTodoName);
-.
+
   // .push() doesn't work, would need an EmberArray or something
   this.todos = [...this.todos, todo];
 }
