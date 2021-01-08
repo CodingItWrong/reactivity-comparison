@@ -2,6 +2,16 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
+// if you use class instances instead you can just assign to the tracked property
+class Todo {
+  @tracked name;
+  @tracked complete = false;
+
+  constructor(name) {
+    this.name = name;
+  }
+}
+
 export default class TodoListComponent extends Component {
   @tracked newTodoName = '';
   @tracked todos = [];
