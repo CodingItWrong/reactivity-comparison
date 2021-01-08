@@ -37,7 +37,5 @@ export default class TodoListComponent extends Component {
       updatedTodo,
       ...this.todos.slice(index + 1),
     ];
-
-    console.log(this.todos);
   }
 }
