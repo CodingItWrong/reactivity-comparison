@@ -37,7 +37,7 @@ const App = observer(() => {
     todo.complete = !todo.complete;
   }
 
-  // actually widgets.map() seems to work fine in this case, but not in others
+  // actually widgets.map() seems to work fine in this case, but not in React Native's FlatList, where accessing the array happens outside the render loop
 
   return (
     <div>
