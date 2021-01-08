@@ -5,8 +5,20 @@
     <button type="submit">Add</button>
   </form>
   <ul>
-    {{#each this.todos as |todo|}}
-    <li>{{todo}}</li>
+    {{#each this.todos as |todo index|}}
+    <li>
+      {{todo.name}}
+      -
+      {{#if todo.complete}}
+      Complete
+      {{else}}
+      Incomplete
+      {{/if}}
+      -
+      <button {{on 'click' (fn this.toggleComplete index)}}>
+        Toggle
+      </button>
+    </li>
     {{/each}}
   </ul>
 </div>
