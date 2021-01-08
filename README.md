@@ -122,11 +122,7 @@ The primitives/immutability approach:
 @action
 handleAddTodo() {
   const todo = { name: this.newTodoName, complete: false };
-.
-  // .push() doesn't work
   this.todos = [...this.todos, todo];
-
-  this.newTodoName = '';
 }
 
 @action
