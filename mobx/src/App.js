@@ -2,46 +2,62 @@ import { useState } from 'react';
 import { makeObservable, observable, action } from "mobx";
 import { observer } from "mobx-react-lite"
 
-class WidgetStore {
-  widgets = [];
+class TodoStore {
+  todos = [];
 
   constructor() {
     makeObservable(this, {
-      widgets: observable,
-      addWidget: action,
+      todos: observable,
+      addTodo: action,
     });
   }
 
-  addWidget(name) {
+  addTodo(name) {
+    const todo = { name, complete: false };
+
     // https://mobx.js.org/api.html#observablearray
     // To convert observable arrays back to plain arrays, use the .slice() method, or check out toJS to convert them recursively. Besides all the language built-in array functions, the following goodies are available on observable arrays as well:…
-    this.widgets.push(name);
+    this.todos.push(todo);
   }
 }
 
-const widgetStore = new WidgetStore();
+const todoStore = new TodoStore();
 
 // somehow this rerenders even if I forget observer()??
 const App = observer(() => {
-  const [newWidgetName, setNewWidgetName] = useState('');
+  const [newTodoName, setNewTodoName] = useState('');
 
-  const handleAddWidget = e => {
+  const handleAddTodo = e => {
     e.preventDefault();
-    widgetStore.addWidget(newWidgetName);
-    setNewWidgetName('');
+    todoStore.addTodo(newTodoName);
+    setNewTodoName('');
+  }
+
+  const toggleComplete = todo => {
+    todo.complete = !todo.complete;
   }
 
   // actually widgets.map() seems to work fine in this case, but not in others
 
   return (
     <div>
-      <h1>Widgets</h1>
-      <form onSubmit={handleAddWidget}>
-        <input type="text" placeholder="Widget" value={newWidgetName} onChange={e => setNewWidgetName(e.target.value)} />
+      <h1>Todos</h1>
+      <form onSubmit={handleAddTodo}>
+        <input type="text" placeholder="Todo" value={newTodoName} onChange={e => setNewTodoName(e.target.value)} />
         <button type="submit">Add</button>
       </form>
       <ul>
-        {widgetStore.widgets.slice().map(widget => (<li>{widget}</li>))}
+        {todoStore.todos.slice().map(todo => (
+          <li>
+            {todo.name}
+            -
+            {todo.complete ? 'Complete' : 'Incomplete'}
+            -
+            <button onClick={() => toggleComplete(todo)}>
+              Toggle
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );
