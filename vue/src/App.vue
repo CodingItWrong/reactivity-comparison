@@ -31,6 +31,9 @@ export default {
     handleAddTodo() {
       const todo = { name: this.newTodoName, complete: false };
 
+      // https://vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats
+      // Change detection caveats in Vue 2: property addition or deletion, setting item by index
+
       // https://vuejs.org/v2/guide/list.html#Mutation-Methods
       // Vue wraps an observed array’s mutation methods so they will also trigger view updates.
       this.todos.push(todo);
