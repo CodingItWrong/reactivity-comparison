@@ -37,8 +37,6 @@ const App = observer(() => {
     todo.complete = !todo.complete;
   }
 
-  // actually widgets.map() seems to work fine in this case, but not in React Native's FlatList, where accessing the array happens outside the render loop
-
   return (
     <div>
       <h1>Todos</h1>
@@ -47,7 +45,7 @@ const App = observer(() => {
         <button type="submit">Add</button>
       </form>
       <ul>
-        {todoStore.todos.slice().map(todo => (
+        {todoStore.todos.map(todo => (
           <li>
             {todo.name}
             -
